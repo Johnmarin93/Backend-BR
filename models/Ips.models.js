@@ -14,9 +14,9 @@ const ipsSchema = new mongoose.Schema({
         required: true,
     },
     Estado:{
-        type:Boolean,
+        type:String,
         required:true,
     },
 });
 
-export default mongoose.model('Ips', ipsSchema)
+export default mongoose.model('IP', ipsSchema)

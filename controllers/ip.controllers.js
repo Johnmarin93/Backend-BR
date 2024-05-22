@@ -3,6 +3,7 @@ import  IP from '../models/Ips.models.js'
 export const getIps = async (req, res) => { 
     const ips = await IP.find()
     res.json(ips)
+    console.log(ips)
 }
 
 export const createIp = async (req, res) => { 
@@ -11,7 +12,7 @@ export const createIp = async (req, res) => {
     const newIp = new IP({
         IpLocal,
         Terminal,
-        CodUnico,
+        CodUnico,   
         Estado,
     })
     const savedIp = await newIp.save()
@@ -19,9 +20,13 @@ export const createIp = async (req, res) => {
 }
 
 export const getIp = async (req, res) => { 
-    const ip = await IP.find({"CodUnico" : req.params.CodUnico})
-    if (ip.length === 0) return res.status(404).json({message: " shops not found"})
-        res.json(ip)
+    try{
+        const ips = await IP.find({"CodUnico" : req.params.CodUnico})
+    if (ips.length === 0) return res.status(404).json({message: " shops not found"})
+        res.json(ips)
+    }catch (error){
+        return res.status(404).json({message: " shops not found"})
+    }
 }
 
 export const deleteIp = async (req, res) => { 

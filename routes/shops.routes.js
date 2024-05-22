@@ -15,7 +15,7 @@ router.get('/shops', authRequired, getShops);
 
 router.get('/shops/:CodUnico', authRequired, getShop);
 
-router.post('/shops', authRequired, createShops);
+router.post('/shops', createShops);
 
 router.delete('/shops/:CodUnico', authRequired, deleteShops);
 
